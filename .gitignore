@@ -1,0 +1,6 @@
+# Ignore
+*.txt
+*.sh
+
+# Except
+!requirements.txt

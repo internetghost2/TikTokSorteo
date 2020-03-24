@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import random
-import pandas as ps
+
+#import pandas as ps
 
 def extract_info():
     id = '6806391889948986630'
@@ -17,7 +18,7 @@ def extract_info():
     return cm
 
 def html_save(file, cm):
-    html = open(file, "a")
+    html = open(file, "w")
 
     for i in cm:
         html.write(str(i))
@@ -29,19 +30,28 @@ def info(file):
     with open(file, 'r') as read:
         for i in read.readlines():
             if "<span>" in i:
-                 u = i.replace('<span>', '').replace('</span>', '').replace('\n', ' ').split('-')
+                 u = i.replace('<span>', '').replace('</span>', '').replace('\n', '').split('-')
                  f.write("User : @" + str(u[0]))
             elif "<p>" in i:
                 p = i.replace('<p>', '').replace('</p>', '')
                 f.write("|| Comment : " + str(p))
+    f.close()
 
 def random_line(fname):
     lines = open(fname).read().splitlines()
     return random.choice(lines)
-print(random_line('output.txt'))
 
-file='users.txt'
+def premi():
+    g = open('guanyador.txt', 'w')
+    g.write(random_line('output.txt'))
+    g.close()
+
+file= 'users.txt'
 
 html_save(file,extract_info())
 info(file)
+
+premi()
+
+
 
